@@ -1,5 +1,9 @@
 # Cozinha planejada em L — pacote para revisão
 
+**Ver o simulador 3D online:** https://betoengmece.github.io/Cozinha-planejada/
+
+**Revisão atual: 02** — ver o que mudou em [`projeto/alteracoes-revisao-02.md`](projeto/alteracoes-revisao-02.md).
+
 **Estado: estudo técnico preliminar. NÃO liberar para corte ou furação.** Este pacote contém a simulação existente e uma relação das peças calculadas pelo modelo, para revisão humana e por outras ferramentas. Não é um projeto executivo final nem autorização para fabricação.
 
 ## Contexto
@@ -13,10 +17,11 @@
 - `simulador/`: aplicativo estático Three.js; executar `python -m http.server 8000 -d simulador` e abrir http://localhost:8000.
 - `projeto/revisao-tecnica.md`: geometria, hipóteses e bloqueios para fabricação.
 - `projeto/pecas-modelo-preliminar.csv`: medidas derivadas do modelo atual, não prontas para corte. Unidades em milímetros; decimais usam ponto.
+- `projeto/alteracoes-revisao-02.md`: mudanças da revisão 02 e cálculos.
 - `projeto/briefing-revisao-ia.md`: perguntas específicas para outra IA ou profissional.
 
 ## Atenção
 - A folga e o movimento da dobradiça são aproximações; a simulação de colisões só verifica portas entre si no ângulo selecionado.
-- O canto cego está sem acesso; falta solução para construção e fixação do retorno.
+- O canto agora é acessado pela porta do retorno (revisão 02); fixação do fechamento e do retorno ainda precisa de detalhamento.
 - Furos, fita de borda, cargas, fixações do pé, de módulos e da parede não estão definidos para fabricação.
 - Não colocar tokens ou arquivos `.openai/hosting.json` em repositórios compartilhados. O material deste pacote não contém credenciais de hospedagem.
