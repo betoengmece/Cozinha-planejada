@@ -1,0 +1,27 @@
+// Referências comerciais para orçamento. As quantidades descrevem o modelo,
+// não substituem conferência de carga, fixações ou plano de corte.
+export function makeHardwareList({cabinetCount, doorCount, shelves, pieces}) {
+  const count = n => `${n} un.`;
+  const area = type => pieces.filter(p => p.material === type).reduce((sum,p) => {
+    const [a,b]=[...p.size].sort((x,y)=>y-x); return sum+a*b;
+  },0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const areaQty = type => `${area(type)} m² de peças`;
+  return [
+    {name:'MDF Guararapes RUC Branco TX · 18 mm',qty:areaQty('MDF 18 mm'),url:'https://www.guararapes.com.br/produto/ruc-branco-tx/',note:'Caixas, portas, prateleiras, travessas e rodapés. Chapa 2,75 × 1,85 m; estimativa sem perda, fita, aproveitamento ou plano de corte. Padrão proposto; cores no 3D são ilustrativas.'},
+    {name:'MDF Guararapes RUC Branco TX · 6 mm',qty:areaQty('MDF 6 mm'),url:'https://www.guararapes.com.br/produto/ruc-branco-tx/',note:'Fundos sobrepostos, um por módulo. Área de peças sem perdas; confirmar face revestida e acabamento no fornecedor.'},
+    {name:'Dobradiça FGVTN MS Slow reta completa · 51MS15XFG100B10',qty:count(doorCount*2),url:'https://www.fgvtn.com.br/site/novopdf/Dobradica_MS_Slow.pdf',note:'2 por porta, proposta inicial: 105°, caneco Ø35 × 11,3 mm. Catálogo informa calço 4 mm e parafusos no kit; confirmar embalagem e configuração de recobrimento antes de furar.'},
+    {name:'Sapata de cozinha Bigfer 120 · 02.03.384',qty:count(cabinetCount*4),url:'https://www.bigfer.com.br/wp-content/uploads/sites/6/2024/05/catalogo_marcenaria_BIGFER.pdf',note:'4 por módulo; catálogo indica 120–150 mm e rosca M10. Confirmar bucha/parafuso de união compatíveis, fixação à base e capacidade com o fabricante. Pés em 3D são esquemáticos.'},
+    {name:'Suporte de prateleira FGVTN 90° · 0091.801004',qty:count(shelves*4),url:'https://www.fgvtn.com.br/produto/suporte-prateleira-90-zamak-niquelado-5-mm',note:'4 por prateleira acessível; pino de 5 mm. Confirmar tipo de furação, profundidade e carga admissível; não estão modelados em 3D.'},
+    {name:'Puxador Renna Rigato Haste preto · 3.650.8566',qty:count(doorCount),url:'https://www.renna.com.br/produtos/puxadores/rigato-haste',note:'1 por porta; entre furos 128 mm. Conferir parafusos fornecidos e comprimento compatível com a porta de 18 mm. 3D é uma representação simples.'},
+    {name:'Ciser Chipboard cabeça chata 4 × 50 mm · 396528021',qty:count(cabinetCount*8),url:'https://loja.ciser.com.br/p/elementos-de-fixacao/parafusos/parafuso-chipboard-phillips-cabeca-chata-396',note:'Proposta de 8 por caixa: 4 para base e 2 por travessa superior. Pré-furação e recuos a definir para não rachar o MDF; representação esquemática.'},
+    {name:'Ciser Chipboard cabeça chata 3 × 20 mm',qty:count(cabinetCount*20),url:'https://www.ciser.com.br/userfiles/downloads/gabarito-escala-1-1-ciser.pdf',note:'Estimativa de 20 por fundo sobreposto: 6 em cada lateral e 4 em cada borda horizontal. Conferir fixação e distâncias às extremidades; não mostrados no 3D.'},
+    {name:'Fischer DuoPower 6 × 30 S com parafuso · 534997',qty:`${count(cabinetCount*2)} (provisório)`,url:'https://www.fischerbrasil.com.br/pt-br/produtos/fixacoes-gerais/buchas-de-nylon/duopower/534997-duopower-6-x-30-s-k-nv',note:'Referência inicial de 2 pontos por módulo para estabilização. Confirmar substrato, parafuso, profundidade, revestimento, espaçadores e carga no local; não dimensionado para sustentar a pedra.'},
+    {name:'Cantoneira Bigfer de fixação · 04.02.032',qty:`${count(cabinetCount*2)} (provisório)`,url:'https://www.bigfer.com.br/wp-content/uploads/sites/6/2023/03/Catalogo-Produto-Ferragens-em-geral-pg.-220.pdf',note:'Candidata para os pontos de estabilização. Confirmar geometria, parafusos para MDF e adequação da ligação à parede; fixação ainda não foi projetada nem representada.'},
+    {name:'Fita de borda REHAU RAUKANTEX',qty:'Metragem a definir',url:'https://www.rehau.com/br-pt/solucoes-para-moveis/fitas-de-borda',note:'Escolher espessura, largura e padrão equivalentes ao painel. A metragem depende das arestas escolhidas e de perdas; não calculada.'},
+    {name:'Silicone neutro Tekbond 280 g',qty:'1 cartucho (estimativa)',url:'https://www.tekbond.com.br/produtos/sela-e-veda/silicones/silicone-neutro',note:'Para vedação de encontros após compatibilidade confirmada. Não indicado aqui como apoio nem fixação estrutural da bancada.'},
+    {name:'Tampo MDF Guararapes RUC Branco TX · 25 mm',qty:areaQty('MDF 25 mm'),url:'https://www.guararapes.com.br/produto/ruc-branco-tx/',note:'Duas peças representadas sem perdas. Confirmar material, espessura, emenda, fita e suporte antes do corte.'},
+    {name:'Parafuso de união FGVTN 30–40 · 0091.501001',qty:'4 conjuntos (provisório)',url:'https://www.fgvtn.com.br/site/novopdf/Parafuso_Uniao_Niquelado_30_40.pdf',note:'Proposta para 2 juntas entre os 3 módulos alinhados, 2 conjuntos por junta, com duas laterais de 18 mm. Não inclui a união do canto e do retorno; conferir furos e interferências.'},
+    {name:'Fixação dos rodapés e união do canto',qty:'A definir',url:'',note:'As peças de rodapé estão no 3D; presilhas compatíveis, união do canto e retorno e seus parafusos não foram escolhidos.'},
+    {name:'Micro-ondas e instalações',qty:'A conferir',url:'',note:'O aparelho do 3D é um volume genérico de 50 × 30 × 40 cm. Modelo real, tomada, ventilação e distância ao fogão não foram medidos.'}
+  ];
+}
